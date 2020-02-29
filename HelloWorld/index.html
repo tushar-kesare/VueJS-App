@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My first Vue app</title>
+    <script src="https://unpkg.com/vue"></script>
+  </head>
+  <style>
+    .s12 {
+      border-style: solid;
+      border-width: 2px;
+      border-color: gray;
+      margin: 10px 0px 10px 0px;
+    }
+  </style>
+  <body>
+    <div id="app">
+      <div v-bind:title="hoverMessage" class="s12">
+          <p>{{ message }}</p>
+          <input v-model="message"/>
+      </div>
+        <div v-if="seen" class="s12">
+          Now you see me
+        </div>
+        <div class="s12">
+          <div>
+              Javascript Frameworks
+          </div>
+          <div>
+            <button v-on:click="removeEntry">
+              Remove last entry
+            </button>
+          </div>
+          <ol>
+            <li v-for="todo in todos">
+              {{ todo.text}}
+            </li>
+          </ol>
+        </div>
+    </div>
+
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          message: "Welcome Vue World!",
+          hoverMessage: "Page loaded on " + new Date().toLocaleString(),
+          seen: true,
+          todos:[
+            {text: 'VueJS'},
+            {text: 'React'},
+            {text: 'Angular'}
+          ]
+        },
+        methods: {
+          removeEntry: function(){
+            this.todos.pop();
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
